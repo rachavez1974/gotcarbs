@@ -1,2 +1,53 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<style type="text/css">
+  .img_size{
+    width: 100%;
+    height: 500px;
+  }
+
+.carousel-caption {
+    top: 120px;
+    bottom: auto;
+    color: #CCFFCC;
+    background-color: black;
+    opacity: .7;
+}
+
+.item {
+  transition: -webkit-transform 1s ease;
+  transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
+}
+  
+</style>
+<body>
+
+<div class="container">  
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <%= image_tag ("landing_page/pic1.jpeg"), class: "item active img_size" %>
+      <%= image_tag ("landing_page/pic2.jpeg"), class: "item img_size" %>
+      <%= image_tag ("landing_page/pic3.jpeg"), class: "item img_size" %>
+    </div>
+    <div class="carousel-caption ">
+        <h1>Great people making good food!</h1>
+        <p class="lead">Not all that wondered are lost! You have wondered here, and now we found you. Let us treat you to our best lavations, o'dourves, platters, and confetis. </p>
+        <a class="btn btn-large btn-primary" href="#">Create Account</a>
+        <a class="btn btn-large btn-primary" href="#">Or Sing-In With UberEats</a>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
