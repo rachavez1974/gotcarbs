@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
 .img_size{
@@ -11,7 +10,7 @@
   }
 
 .carousel-caption {
-    top: 90px;
+    top: 120px;
     bottom: auto;
     color: #CCFFCC;
     background-color: black;
@@ -19,7 +18,7 @@
 }
 
 .item {
-    display: none;
-    position: relative;
-    transition: .2s ease-in-out left;
+  transition: -webkit-transform 1s ease;
+  transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
 }
