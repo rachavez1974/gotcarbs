@@ -25,6 +25,12 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
+  def destroy
+    @user.destroy
+    flash[:success] = "The account for #{@user.first_name} has been deleted!"
+    redirect_to root_url
+  end
   
   private
     def user_params(user)
