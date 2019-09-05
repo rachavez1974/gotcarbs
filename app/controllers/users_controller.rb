@@ -17,6 +17,15 @@ class UsersController < ApplicationController
   def show  
   end
 
+  def update
+    if @user.update_attributes(user_params(params[:user].keys))
+      flash[:success] = "Your profile has been update!" 
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+  
   private
     def user_params(user)
       params.require(:user).permit(user)
