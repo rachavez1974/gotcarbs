@@ -13,4 +13,10 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+
+  # Logs out the current user.
+  def destroy
+    log_out
+    redirect_to root_ur    
+  end
 end
