@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params(params[:user].keys))
       if @user.save
+        flash[:success] = "Your profile has been created!" 
         redirect_to @user
       else
         render 'new'
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
     flash[:success] = "The account for #{@user.first_name} has been deleted!"
     redirect_to root_url
   end
-  
+
   private
     def user_params(user)
       params.require(:user).permit(user)
