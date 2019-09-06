@@ -4,9 +4,23 @@ class SessionsController < ApplicationController
 
   def create
     if !request.env["omniauth.auth"].nil?
+      make_user_from_oauth
+    else
+      regular_sign_in
+    end
+  end
+
+  # Logs out the current user.
+  def destroy
+    log_out
+    redirect_to root_url    
+  end
+
+  private
+    def make_user_from_oauth
       #if this is the first timecreating user, sign them in, and make sure rest of info is entered
       #else redirect to current menu
-      oauth_hash = request.env["omniauth.auth"]["info"].nil?
+      oauth_hash = request.env["omniauth.auth"]["info"]
       @user = User.find_by(email: oauth_hash["email"])
       if !@user
         @user = User.create_from_oauth(oauth_hash)
@@ -19,7 +33,12 @@ class SessionsController < ApplicationController
           redirect_to root_url
         end
       else
-        #if any attributes are nil on subsequent attemtps, redirect_to edit 
+        update_user_from_oauth
+      end
+    end
+
+    def update_user_from_oauth
+      #if any attributes are nil on subsequent attemtps, redirect_to edit 
         if @user.attributes.values.any? { |attr| attr == nil }
           log_in(@user)
           flash[:alert] = "Please fill out rest of information before placing order!" 
@@ -29,8 +48,10 @@ class SessionsController < ApplicationController
           log_in(@user) 
           redirect_to @user
         end
-      end
-    else
+    end
+
+    def regular_sign_in
+      # sign in user at website
       @user = User.find_by(email: params[:session][:email].downcase)
 
       if @user && @user.authenticate(params[:session][:password])
@@ -41,11 +62,5 @@ class SessionsController < ApplicationController
         render 'new'
       end
     end
-  end
 
-  # Logs out the current user.
-  def destroy
-    log_out
-    redirect_to root_url    
-  end
 end
