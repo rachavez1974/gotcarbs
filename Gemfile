@@ -18,6 +18,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '4.3.1'
 gem 'rails_12factor', group: :production
 gem 'simple_form'
+gem 'omniauth-gplus', '~> 2.0'
+gem 'dotenv-rails'
+gem 'omniauth-facebook'
+gem 'omniauth'
+gem 'pry'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

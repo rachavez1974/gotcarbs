@@ -7,13 +7,25 @@
       <div class="form-group col-md-6">
         <%= f.input :last_name, placeholder: "Type last name here" %>
       </div>
-      <div class="clearfix"></div>
-      <div class="form-group col-md-6">
-        <%= f.input :password, placeholder: "Type password here" %>
-      </div>
-      <div class="form-group col-md-6">
-        <%= f.input :password_confirmation, placeholder: "Type password confirmation here" %>
-      </div>
+      <% if @user.id.nil? %>
+        <div class="clearfix"></div>
+          <div class="form-group col-md-6">
+            <%= f.input :password, placeholder: "Type password here" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.input :password_confirmation, placeholder: "Type password confirmation here" %>
+          </div>
+      <% else %>
+        <% unless @user.reload.attributes.values.any? { |attr| attr == nil }%>
+          <div class="clearfix"></div>
+          <div class="form-group col-md-6">
+            <%= f.input :password, placeholder: "Type password here" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.input :password_confirmation, placeholder: "Type password confirmation here" %>
+          </div>
+        <% end %>
+      <% end %>
       <div class="clearfix"></div>
       <div class="form-group col-md-6">
         <%= f.input :email, placeholder: "Type email here" %>
