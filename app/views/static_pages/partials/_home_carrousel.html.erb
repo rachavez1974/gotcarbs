@@ -36,8 +36,9 @@
       <div class="carousel-caption ">
           <h1>Great people making good food!</h1>
           <p class="lead">Not all that wondered are lost! You have wondered here, and now we found you. Let us treat you to our best lavations, o'dourves, platters, and confetis. </p>
-          <a class="btn btn-large btn-primary" href="#">Create Account</a>
-          <a class="btn btn-large btn-primary" href="#">Or Sing-In With UberEats</a>
+          <%= link_to "Create Account", signup_path, class: "btn btn-large btn-primary" %>
+          <%= link_to('Log in with Facebook!', '/auth/facebook', class: "btn btn-large btn-primary") %>
+  
       </div>
     </div>
   </div>

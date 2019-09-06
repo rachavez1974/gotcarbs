@@ -22,6 +22,13 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def self.create_from_oauth(oauth_hash)
+    #save user withouth validations
+    user = User.new(first_name: oauth_hash["name"].split[0], email: oauth_hash["email"], password: SecureRandom.hex)
+    user.save(:validate => false)
+    User.last
+  end
+
   private
   # makes all emails for User lowercase 
   def downcase_email
