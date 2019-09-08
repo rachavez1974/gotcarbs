@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :logged_in_user, except: [:new]
 
 
-
   def new
     if !logged_in? #or if looged in and admin
       @user = User.new
@@ -55,6 +54,7 @@ class UsersController < ApplicationController
     def logged_in_user
       #binding.pry
       unless logged_in?
+        store_location
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
@@ -62,6 +62,6 @@ class UsersController < ApplicationController
 
     # Confirms the correct user.
     def correct_user
-      redirect_to(root_url) unless @user == current_user?(user) #or current_user? is admin
+      redirect_to(root_url) unless @user == current_user?(user) #or current_user?s is admin
     end
 end
