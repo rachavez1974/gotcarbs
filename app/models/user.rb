@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :remember_token
   before_save :downcase_email
 
   VAILID_PHONENUMBER_REGEX = /\A\d{10}\z/
@@ -22,9 +23,30 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  # Returns a random token.
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def remember
+    self.remember_token = User.new_token
+    self.update_attribute(:remember_digest, User.digest(remember_token))
+  end
+
+  #Forgets a user.
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
+
+  # Returns true if the given token matches the digest.
+  def authenticated?(remember_token)
+    return false if remember_digest.nil?
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
   def self.create_from_oauth(oauth_hash)
     #save user withouth validations
-    user = User.new(first_name: oauth_hash["name"].split[0], email: oauth_hash["email"], password: SecureRandom.hex)
+    user = User.new(first_name: oauth_hash["name"].split[0], email: oauth_hash["email"], password: User.new_toke)
     user.save(:validate => false)
     User.last
   end
