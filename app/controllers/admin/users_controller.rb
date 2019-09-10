@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
-  before_action :admin?
+  before_action :admin?, only: [:index, :new, :create, :show]
 
   def new
     @user = User.new
@@ -22,7 +22,10 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  
+  def show
+  end
+
+
 
   private
 
