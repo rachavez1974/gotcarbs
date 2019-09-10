@@ -38,6 +38,12 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    flash[:success] = "The account for #{@user.first_name} has been deleted!"
+    redirect_to root_url
+  end
+
 
 
   private
