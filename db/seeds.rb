@@ -22,7 +22,7 @@
   name = Faker::Name.name.split(" ")
   first_name = name[0]
   last_name  = name[1]
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n+1}@gotcarbs.org"
   password = "password"
   password_confirmation = "password"
   terms = true

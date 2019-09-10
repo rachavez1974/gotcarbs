@@ -1,0 +1,12 @@
+<div class="container" style="padding-bottom: 100px; margin-top: 140px;">
+  <%= will_paginate(:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+    <h1>All users</h1>
+      <ul>
+        <% @users.each do |user| %>
+          <li>
+            <%= link_to user.full_name, user %>
+          </li>
+        <% end %>
+      </ul>
+  <%= will_paginate(:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>

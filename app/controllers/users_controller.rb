@@ -1,16 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
-  before_action :logged_in_user, except: [:new]
+  before_action :logged_in_user, only: [:edit, :update, :show, :destroy]
   before_action :correct_user, only: [:edit, :update, :show, :destroy]
-  before_action :admin?, only: [:index]
-
-
-  def index
-    @users = User.paginate(page: params[:page], per_page: 2)  
-  end
 
   def new
-    if !logged_in? #or if looged in and admin
+    if !logged_in?
       @user = User.new
     else
       redirect_to root_url
@@ -67,11 +61,6 @@ class UsersController < ApplicationController
 
     # Confirms the correct user.
     def correct_user
-      redirect_to(root_url) unless current_user?(@user) #or admin 
-    end
-
-    def admin?
-      admin = true
-      redirect_to(root_url) unless admin #current_user.admin?
+      redirect_to(root_url) unless current_user?(@user)
     end
 end
