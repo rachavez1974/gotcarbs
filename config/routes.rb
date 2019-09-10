@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
 
-  resources :users, except: [:new]
+  resources :users, except: [:new, :create]
+
+  namespace :admin do
+    # root to: '/dashboard'
+    resources :users
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'static_pages#home'
   get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
   
   #custom sessions routes
   get '/login', to: 'sessions#new'

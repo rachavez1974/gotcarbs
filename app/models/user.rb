@@ -12,9 +12,14 @@ class User < ApplicationRecord
   validates :email,        presence: true, length: {maximum: 255}, 
                            format: {with: VALID_EMAIL_REGEX}, 
                            uniqueness: {case_sensitive: false}
+
   has_secure_password
   validates :password,  presence: true, length: {minimum: 1}, allow_nil: true
 
+
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -46,9 +51,19 @@ class User < ApplicationRecord
 
   def self.create_from_oauth(oauth_hash)
     #save user withouth validations
-    user = User.new(first_name: oauth_hash["name"].split[0], email: oauth_hash["email"], password: User.new_toke)
-    user.save(:validate => false)
-    User.last
+    user = User.new(first_name: oauth_hash["name"].split[0], email: oauth_hash["email"], password: User.new_token)
+    if user.save(:validate => false)
+      User.last
+    end
+  end
+
+  def self.create_by_admin(params)
+    params[:email] = "#{params[:first_name]}#{rand 0..10000000}@gotcarbs.org"
+    params[:password] = User.new_token
+      user = User.create(params)
+      if user.save
+        User.last
+      end
   end
 
   private

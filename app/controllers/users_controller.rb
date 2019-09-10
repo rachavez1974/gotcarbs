@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :show, :destroy]
+  before_action :correct_user, only: [:edit, :update, :show, :destroy]
 
   def new
-    @user = User.new
+    if !logged_in?
+      @user = User.new
+    else
+      redirect_to root_url
+    end
   end
 
   def create
@@ -21,7 +27,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params(params[:user].keys))
-      flash[:success] = "Your profile has been update!" 
+      flash[:success] = "Your profile has been updated!" 
       redirect_to @user
     else
       render 'edit'
@@ -41,5 +47,20 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    # Before filters
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Confirms the correct user.
+    def correct_user
+      redirect_to(root_url) unless current_user?(@user)
     end
 end

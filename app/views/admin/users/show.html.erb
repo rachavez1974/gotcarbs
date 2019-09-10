@@ -10,9 +10,13 @@
               <li class="nav-item">
                 <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Info</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" style="padding: 4px;">
                 <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo">
-                <%= link_to "Delete", @user, method: :delete,
+                <%= link_to "Edit", edit_admin_user_path(@user) %></a>
+              </li>
+              <li class="nav-item" style="padding: 4px;">
+                <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo">
+                <%= link_to "Delete", admin_user_path(@user), method: :delete,
                                   data: { confirm: "You sure?" } %></a>
               </li>
           </ul>
