@@ -25,6 +25,19 @@ class Admin::UsersController < ApplicationController
   def show
   end
 
+  def edit
+    
+  end
+
+  def update
+    if @user.update_attributes(user_params(params[:user].keys))
+      flash[:success] = "#{@user.full_name} profile has been updated!" 
+      redirect_to admin_user_url(@user)
+    else
+      render 'edit'
+    end
+  end
+
 
 
   private
