@@ -16,6 +16,10 @@ class User < ApplicationRecord
   validates :password,  presence: true, length: {minimum: 1}, allow_nil: true
 
 
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
