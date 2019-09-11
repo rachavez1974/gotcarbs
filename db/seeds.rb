@@ -14,6 +14,7 @@
 #              terms: true,
 #              email_list: true,
 #              birthday: nil,
+#              admin: true,
 #              phone_number: "2403508067"
 #              )
 

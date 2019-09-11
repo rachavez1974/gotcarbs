@@ -12,7 +12,12 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo">
-                <%= link_to "Delete", @user, method: :delete,
+                <%= link_to "Edit", edit_user_path(current_user), class: "btn btn-primary" %></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo">
+
+                <%= link_to "Delete", current_user, method: :delete,
                                   data: { confirm: "You sure?" } %></a>
               </li>
           </ul>
