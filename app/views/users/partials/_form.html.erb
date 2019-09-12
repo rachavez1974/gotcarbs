@@ -42,9 +42,11 @@
         <p>I understand & agree to the Terms and Conditions and that my information will be used as described on this page and in the Privacy Policy.</p>
         <%= f.input :terms, as: :radio_buttons %><br>
       </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
         <%= f.input :email_list, as: :radio_buttons %>
       </div>
+      <div class="clearfix"></div>
+        <%= render 'users/partials/address_form', :f => f %>
         <%= f.submit yield(:button_text), class: 'btn btn-primary btn-block' %>
     </div>
   </div>

@@ -1,7 +1,11 @@
 class User < ApplicationRecord
+  has_many :addresses, dependent: :destroy
+  accepts_nested_attributes_for :addresses
+
   attr_accessor :remember_token
   before_save :downcase_email
 
+  validates_associated :addresses
   VAILID_PHONENUMBER_REGEX = /\A\d{10}\z/
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :first_name,   presence: true, length: {maximum: 50} 
