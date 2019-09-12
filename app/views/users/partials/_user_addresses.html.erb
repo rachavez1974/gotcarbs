@@ -1,0 +1,36 @@
+<div class="row">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Business</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">University</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Military</a>
+    </li>
+    <li class="nav-item" style="padding-right: 5px;">
+      <a class="nav-link" style="padding: 5px;" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><%= link_to "Add New", new_address_path %> </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="padding: 5px;" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><%= link_to "Edit or Delete Addresses", addresses_path %> </a>
+    </li>
+  </ul>
+  </div>
+  <% @user.addresses.each do |address|%>
+  <% if address.address_type == "Residence"%>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"><%= render 'users/partials/address', :address => address %> </div>
+    <% elsif address.address_type == "Business" %>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><%= render 'users/partials/address', :address => address %></div>
+    <% elsif address.address_type == "University"%>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"><%= render 'users/partials/address', :address => address %></div>
+    <% else %>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"><%= render 'users/partials/address', :address => address %></div>
+    <% end %>
+  <% end %>
+</div>   
+

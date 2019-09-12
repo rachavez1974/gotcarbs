@@ -6,13 +6,14 @@ class UsersController < ApplicationController
   def new
     if !logged_in?
       @user = User.new
+      @user.addresses.build
     else
       redirect_to root_url
     end
   end
 
   def create
-    @user = User.new(user_params(params[:user].keys))
+    @user = User.new(user_params(user_keys, address_keys))
       if @user.save
         log_in @user
         flash[:success] = "Your profile has been created!" 
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params(params[:user].keys))
+    if @user.update_attributes(user_params(user_keys, address_keys))
       flash[:success] = "Your profile has been updated!" 
       redirect_to @user
     else
@@ -41,26 +42,12 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params(user)
-      params.require(:user).permit(user)
+    def user_params(user, address)
+      params.require(:user).permit(user, addresses_attributes: address)
     end
 
     def set_user
       @user = User.find(params[:id])
     end
 
-    # Before filters
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
-    # Confirms the correct user.
-    def correct_user
-      redirect_to(root_url) unless current_user?(@user)
-    end
 end
