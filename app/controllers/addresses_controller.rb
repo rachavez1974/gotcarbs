@@ -1,7 +1,6 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: [:edit, :update, :show, :destroy]
   before_action :logged_in_user, only: [:edit, :update, :show, :destroy]
-  # before_action :correct_user, only: [:edit, :update, :show, :destroy]
 
 
   def new
@@ -24,6 +23,18 @@ class AddressesController < ApplicationController
 
   def index
     @addresses = current_user.addresses
+  end
+
+  def edit
+  end
+
+  def update
+    if @address.update_attributes(address_params(params[:address].keys))
+      flash[:success] = "Address has been updated!" 
+      redirect_to user_url(current_user)
+    else
+      render 'edit'
+    end
   end
 
   private

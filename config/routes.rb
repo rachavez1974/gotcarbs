@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'addresses/new'
-  get 'address/new'
   resources :users, except: [:new, :create]
   resources :addresses
 
