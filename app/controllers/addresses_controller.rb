@@ -37,6 +37,12 @@ class AddressesController < ApplicationController
     end
   end
 
+  def destroy
+    @address.destroy
+    flash[:success] = "The #{@address.address_type} for #{@current_user.first_name} has been deleted!"
+    redirect_to user_url(current_user)
+  end
+
   private
     def address_params(address)
       params.require(:address).permit(address)
