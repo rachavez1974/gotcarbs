@@ -1,7 +1,6 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: [:edit, :update, :show, :destroy]
-  before_action :logged_in_user, only: [:edit, :update, :show, :destroy]
-
+  before_action :logged_in_user && :correct_address_user, only: [:edit, :update, :show, :destroy]
 
   def new
     @address = Address.new
@@ -50,5 +49,10 @@ class AddressesController < ApplicationController
 
     def set_address
       @address = Address.find(params[:id])
+    end
+
+    # Confirms the correct user.
+    def correct_address_user
+      redirect_to(root_url) unless current_user?(@address.user)
     end
 end
