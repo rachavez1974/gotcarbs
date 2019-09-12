@@ -19,4 +19,19 @@ class ApplicationController < ActionController::Base
     address_attr = params[:user]["addresses_attributes"].values
     address_attr[0].keys
   end
+
+  # Before filters
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Confirms the correct user.
+    def correct_user
+      redirect_to(root_url) unless current_user?(@user)
+    end
 end

@@ -1,4 +1,9 @@
 class AddressesController < ApplicationController
+  before_action :set_address, only: [:edit, :update, :show, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :show, :destroy]
+  # before_action :correct_user, only: [:edit, :update, :show, :destroy]
+
+
   def new
     @address = Address.new
   end
@@ -13,6 +18,10 @@ class AddressesController < ApplicationController
     end
   end
 
+  def show
+    
+  end
+
   def index
     @addresses = current_user.addresses
   end
@@ -20,5 +29,9 @@ class AddressesController < ApplicationController
   private
     def address_params(address)
       params.require(:address).permit(address)
+    end
+
+    def set_address
+      @address = Address.find(params[:id])
     end
 end
