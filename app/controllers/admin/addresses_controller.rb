@@ -10,15 +10,15 @@ class Admin::AddressesController < ApplicationController
     end
   end
      
-  # def create
-  #   @address = current_user.addresses.build(address_params(params[:address].keys))
-  #   if @address.save
-  #     flash[:success] = "Address created!"
-  #     redirect_to user_url(current_user)
-  #   else
-  #     render 'new'
-  #   end
-  # end
+  def create
+    @address = Address.new(address_params(params[:address].keys, params[:user_id]))
+    if @address.save
+      flash[:success] = "Address created!"
+      redirect_to admin_user_url(find_user(params[:user_id]))
+    else
+      render 'new'
+    end
+  end
 
   # def show
 
@@ -51,11 +51,15 @@ class Admin::AddressesController < ApplicationController
   # end
 
   private
-    def address_params(address)
-      params.require(:address).permit(address)
+    def address_params(address, user_id)
+      params.require(:address).permit(address, user_id)
     end
 
     def set_address
       @address = Address.find(params[:id])
+    end
+
+    def find_user(user_id)
+      @user = User.find_by(id: user_id)
     end
 end
