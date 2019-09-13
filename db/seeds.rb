@@ -62,3 +62,8 @@ User.create!(first_name:  "Ramon",
                                          address_type: ad_type,
                                          unit_type: u_type])
 end
+
+#create breakfast items
+5.times do |n|
+
+end
