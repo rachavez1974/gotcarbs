@@ -6,7 +6,7 @@
     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">University</a>
     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Military</a>
     <a id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><%= link_to "Add New", new_admin_user_address_path(@user), class: "nav-item nav-link" %></a>
-    <a  id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><%= link_to "Edit or Delete Addresses", edit_admin_user_address_path(@user), class: "nav-item nav-link" %></a>
+    <a  id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><%= link_to "Edit or Delete Addresses", admin_user_addresses_path(@user), class: "nav-item nav-link" %></a>
     </div>
 </nav>
 

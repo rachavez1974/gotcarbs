@@ -4,14 +4,15 @@ class Admin::AddressesController < ApplicationController
 
   def new
     if params[:user_id] && !User.exists?(params[:user_id])
-      redirect_to admin_users_url, flash[:alert] = "User not found."
+      flash[:alert] = "User not found."
+      redirect_to admin_users_url
     else
       @address = Address.new(user_id: params[:user_id])
     end
   end
      
   def create
-    @address = Address.new(address_params(params[:address].keys, params[:user_id]))
+    @address = Address.new(address_params(params[:address].keys))
     if @address.save
       flash[:success] = "Address created!"
       redirect_to admin_user_url(find_user(params[:user_id]))
@@ -20,39 +21,60 @@ class Admin::AddressesController < ApplicationController
     end
   end
 
-  # def show
-
-  # end
+  def show
+  end
 
   def index
     if params[:user_id]
-      @addresses = Address.user_addresses
+      @addresses = Address.user_addresses(params[:user_id])
     else
-      flash[:success] = "No addresses for this users, please add one!"
+      flash[:alert] = "No addresses for this users, please add one!"
     end
   end
 
-  # def edit
-  # end
+  def edit
+    if params[:user_id]  
+      if find_user(params[:user_id]).nil?
+        flash[:alert] = "Author not found."
+        redirect_to admin_users_path
+      else
+        redirect_to admin_users_path(@user), flash[:alert] = "Address not found." if @address.nil?
+      end
+    else
+      @address
+    end
+  end
 
-  # def update
-  #   if @address.update_attributes(address_params(params[:address].keys))
-  #     flash[:success] = "Address has been updated!" 
-  #     redirect_to user_url(current_user)
-  #   else
-  #     render 'edit'
-  #   end
-  # end
+  def update
+    if @address.update_attributes(address_params(params[:address].keys))
+      flash[:success] = "Address has been updated!" 
+      redirect_to admin_user_url(find_user(params[:user_id]))
+    else
+      render 'edit'
+    end
+  end
 
-  # def destroy
-  #   @address.destroy
-  #   flash[:success] = "The #{@address.address_type} for #{@current_user.first_name} has been deleted!"
-  #   redirect_to user_url(current_user)
-  # end
+  def destroy
+    if params[:user_id]
+      if find_user(params[:user_id]).nil?
+        flash[:alert] = "User not found."
+        redirect_to admin_users_url
+      elsif @address.nil?
+        flash[:alert] = "Address not found."
+        redirect_to admin_users_path(@user)
+      else
+        @address.destroy
+        flash[:success] = "The #{@address.address_type} for #{@address.user.full_name} has been deleted!"
+        redirect_to admin_user_url(@address.user)
+      end
+    else
+      @address
+    end
+  end
 
   private
-    def address_params(address, user_id)
-      params.require(:address).permit(address, user_id)
+    def address_params(address)
+      params.require(:address).permit(address)
     end
 
     def set_address

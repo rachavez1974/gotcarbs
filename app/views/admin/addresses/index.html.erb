@@ -1,0 +1,6 @@
+<div class="container" style="margin-top: 120px; margin-bottom: 30px;">
+  <% @addresses.each do |address| %>
+    <%= link_to address.address_type, admin_user_address_path(address.user,address) %>
+    <br>
+  <% end %>
+</div>
