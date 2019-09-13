@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :items
+  resources :orders
   resources :users, except: [:new, :create]
   resources :addresses
 
