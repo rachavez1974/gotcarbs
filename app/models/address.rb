@@ -13,7 +13,7 @@ class Address < ApplicationRecord
   validates  :state, presence: true, length: {in: 2..50}
   validates  :zipcode, presence: true, length: {maximum: 5}
 
-
+  scope :user_addresses, -> (user_id) { where(user_id: user_id) }
 
   def unit_type_not_none?
     return true if unit_type != "None"
