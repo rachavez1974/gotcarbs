@@ -1,0 +1,10 @@
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= link_to "Breakfast", admin_items_path(:menu => "Breakfast"), class: "nav-item nav-link" %></a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><%= link_to "Lunch", admin_items_path(:menu => "Lunch"), class: "nav-item nav-link" %></a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><%= link_to "Happy Hour", admin_items_path(:menu => "Happy Hour"), class: "nav-item nav-link" %></a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><%= link_to "Dinner", admin_items_path(:menu => "Dinner"), class: "nav-item nav-link" %></a>
+    <a id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><%= link_to "LateNight", admin_items_path(:menu => "Late Night"), class: "nav-item nav-link" %></a>
+    <a  id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><%= link_to "Brunch", admin_items_path(:menu => "Brunch"), class: "nav-item nav-link" %></a>
+    </div>
+</nav>

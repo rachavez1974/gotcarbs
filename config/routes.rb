@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :items
+  
   resources :orders
   resources :users, except: [:new, :create]
   resources :addresses
 
   namespace :admin do
     # root to: '/dashboard'
+    resources :items
     resources :users do
       resources :addresses
     end

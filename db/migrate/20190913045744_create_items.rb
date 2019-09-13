@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :section
       t.decimal :price
       t.boolean :availability
-
+      
       t.timestamps
     end
   end

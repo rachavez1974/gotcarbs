@@ -3,6 +3,10 @@ class Admin::ItemsController < ApplicationController
   before_action :logged_in_user && :admin?, only: [:edit, :update, :show, :destroy]
   
   def index
-    @items = Item.all    
+    if params[:menu]
+      @items = Item.paginate(page: params[:page], per_page: 10).menu_item(params[:menu])
+    else
+      @items = Item.paginate(page: params[:page], per_page: 15)      
+    end 
   end  
 end
