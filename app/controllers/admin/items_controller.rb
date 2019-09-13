@@ -46,6 +46,12 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    flash[:success] = "#{@item.name} has been deleted!"
+    redirect_to admin_items_path
+  end
+
   private
     def item_params(item)
       params.require(:item).permit(item)
