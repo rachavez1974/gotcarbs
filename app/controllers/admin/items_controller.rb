@@ -17,6 +17,14 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
+  def edit
+    
+  end
+
+  def update
+    
+  end
+
   def index
     if params[:menu]
       @items = Item.paginate(page: params[:page], per_page: 10).menu_items(params[:menu])
