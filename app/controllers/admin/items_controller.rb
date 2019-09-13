@@ -22,7 +22,12 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    
+    if @item.update_attributes(item_params(params[:item].keys))
+      flash[:success] = "Item has been updated!" 
+      redirect_to admin_item_path(@item)
+    else
+      render 'edit'
+    end
   end
 
   def index
