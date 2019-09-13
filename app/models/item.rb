@@ -12,6 +12,7 @@ class Item < ApplicationRecord
                                     format: {with: VALID_PRICE_REGEX, multiline: true}
   validates :section, presence: true
   validates :menu_type, presence: true
+  validates :availability, presence: true
 
   scope :menu_items, -> (menu_type) { where(menu_type: menu_type) }
   scope :menu_item, -> (key_search) { where("id = ? OR name = ?", key_search) }
