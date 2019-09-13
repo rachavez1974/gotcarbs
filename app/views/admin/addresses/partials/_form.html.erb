@@ -1,0 +1,32 @@
+<%= simple_form_for(@address, url: yield(:path)) do |f| %> 
+  <div class="container" style="margin-top: 120px; margin-bottom: 30px;">
+    <div class="row">
+      <%= f.hidden_field :user_id %>
+      <div class="form-group col-md-5">
+        <%= f.input :street_address, placeholder: "Type your street address" %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.input :address_type, as: :select, :collection => Address.address_types.keys.to_a %>
+      </div>
+       <div class="clearfix"></div>
+      <div class="form-group col-md-2">
+        <%= f.input :unit_type, as: :select, :collection => Address.unit_types.keys.to_a, :input_html => {:onchange => "showAptNumberBox('user_addresses_attributes_0_unit_type');"} %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.input :number %>    
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.input :city %>
+      </div>
+      <div class="clearfix"></div>
+      <div class="form-group col-md-2">
+        <%= f.input :state %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.input :zipcode %>
+      </div>
+      <div class="clearfix"></div>
+        <%= f.submit yield(:button_text), class: 'btn btn-primary btn-block' %>
+    </div>
+  </div>
+  <% end %>

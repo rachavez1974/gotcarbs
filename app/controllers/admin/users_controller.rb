@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
-  before_action :admin?, only: [:index, :new, :create, :show]
+  before_action :logged_in_user && :admin?, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -13,9 +13,10 @@ class Admin::UsersController < ApplicationController
   def create
     params[:user][:email] = "#{params[:first_name]}#{rand 0..10000000}@gotcarbs.org"
     params[:user][:password] = User.new_token
-    @user = User.new(user_params(params[:user].keys))
+    @user = User.new(user_params(user_keys))
     
     if @user.save
+      flash[:success] = "Profile for #{@user.full_name} has been updated!" 
       redirect_to admin_user_url(@user)
     else
       render 'new'
@@ -30,7 +31,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params(params[:user].keys))
+    if @user.update_attributes(user_params(user_keys))
       flash[:success] = "#{@user.full_name} profile has been updated!" 
       redirect_to admin_user_url(@user)
     else
@@ -54,9 +55,5 @@ class Admin::UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
-    end
-
-    def admin?
-      redirect_to(root_url) unless current_user.admin?
     end
 end
