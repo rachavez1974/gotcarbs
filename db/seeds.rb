@@ -62,3 +62,21 @@ User.create!(first_name:  "Ramon",
                                          address_type: ad_type,
                                          unit_type: u_type])
 end
+
+#create breakfast items
+165.times do |n|
+  menu = rand(0..5)
+  section = rand(0..4)
+  name = Faker::Food.dish
+  desc = Faker::Food.description
+  price = Faker::Number.decimal(l_digits: 2, r_digits: 2)
+  av = true
+
+  Item.create!(name: name,
+               description: desc,
+               price: price,
+               menu_type: menu,
+               section: section,
+               availability: av)
+
+end

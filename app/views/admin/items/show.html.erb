@@ -1,0 +1,42 @@
+<div style="margin-top: 140px; margin-bottom: 40px;">
+  <%= render 'admin/items/partials/show_nav' %>
+</div>
+<table class="table" style="margin-left: 30px;"">
+  <thead>
+    <tr>
+      <th scope="col">Number</th>
+      <th scope="col"><%= @item.id %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td><%= @item.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Description</th>
+      <td><%= @item.description %></td>
+    </tr>
+    <tr>
+      <th scope="row">Price</th>
+      <td><%= @item.price %></td>
+    </tr>
+    <tr>
+      <th scope="row">Availability</th>
+      <td><% if @item.availability %>
+        Yes
+          <% else  %>
+          No
+          <% end %>
+        </td>
+    </tr>
+    <tr>
+      <th scope="row">Menu</th>
+      <td><%= @item.menu_type%></td>
+    </tr>
+    <tr>
+      <th scope="row">Section</th>
+      <td><%= @item.section %></td>
+    </tr>
+  </tbody>
+</table>
