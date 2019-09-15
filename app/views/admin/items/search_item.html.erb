@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style> 
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+</style>
+
+  </head>
+  <!-- Coded with love by Mutiullah Samim-->
+  <body>
+    <div class="container h-100" style="margin-top: 140px; margin-bottom: 40px;">
+      <div class="d-flex justify-content-center h-100">
+          <div class="container" style="margin-top: 140px; margin-bottom: 40px;">
+        <%= form_tag(admin_search_path, class: "searchbar", method: :get) do %>
+          <%= text_field_tag(:search_key, params[:search_key], placeholder: "enter item's number or full name") %>
+          <%= submit_tag 'Search' %>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+

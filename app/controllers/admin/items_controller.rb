@@ -39,10 +39,16 @@ class Admin::ItemsController < ApplicationController
   end  
 
   def show
-    if params[:key_search]
-      @item = Item.item_menu(params[:key_search])
-    else
-      @item
+  end
+
+  def search
+    if params[:search_key]
+      if @item = Item.find_by_id_or_name(params[:search_key])
+        render 'show'
+      else
+        flash.now[:alert] = "Item not found, please try agagin!" 
+        render 'search_item'
+      end
     end
   end
 

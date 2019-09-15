@@ -15,7 +15,10 @@ class Item < ApplicationRecord
   validates :availability, presence: true
 
   scope :menu_items, -> (menu_type) { where(menu_type: menu_type) }
-  scope :menu_item, -> (key_search) { where("id = ? OR name = ?", key_search) }
+
+  def self.find_by_id_or_name(key)
+    Item.find_by(:id => key) || Item.find_by(:name => key)
+  end
 
 
 

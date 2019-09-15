@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     # root to: '/dashboard'
     resources :items
+    get 'searchitem', to: 'items#search_item'
+    get 'search', to: 'items#search'
     resources :users do
       resources :addresses
     end
