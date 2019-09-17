@@ -1,23 +1,22 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "bootstrap";
 
 .img_size{
-    width: 100%;
-    height: 500px;
+    width: 50%;
+    height: 100px;
   }
-
 .carousel-caption {
-    top: 120px;
+    top: 70px;
     bottom: auto;
     color: #CCFFCC;
     background-color: black;
     opacity: .7;
 }
 
-.item {
-  transition: -webkit-transform 1s ease;
-  transition: transform 1s ease;
-  transition: transform 1s ease, -webkit-transform 1s ease;
-}
+.mySlides {display:none;}
+
+.img_size{
+    width: 100%;
+    height: 500px;
+  }

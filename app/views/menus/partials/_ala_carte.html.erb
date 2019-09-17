@@ -1,0 +1,15 @@
+<div id="A La Carte" class="w3-container menu w3-padding-32 w3-white">
+  <% @items.each do |item|%>
+    <% if item.section == "A La Carte"%>
+    <h1><b><%= item.name %></b>
+      <%if item.availability && item.menu_type == Item.current_menu %>
+        </b><span style="border:1px solid red;">Add To Cart</span>
+      <% elsif !item.availability %>
+        <span style="border:1px solid red;">Item Not Available </span>
+      <% end %> 
+    <span class="w3-right w3-tag w3-dark-grey w3-round">$<%= item.price%></span></h1>
+    <p class="w3-text-grey"><%= item.description %></p>
+    <% end %>
+    <% end %>
+  <hr>
+</div>

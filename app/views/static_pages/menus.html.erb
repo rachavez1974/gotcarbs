@@ -15,8 +15,7 @@
   <div class="row">
     <div class="col-md-4">
       <div class="thumbnail">
-          <%= link_to image_tag("menus/breakfast.jpg", alt: "Rails logo"),
-            'breakfast_path' %>
+          <%= link_to image_tag("menus/breakfast.jpg", alt: "Breakfast Menu"), menu_path(:menu => 0) %>
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -25,8 +24,8 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-          <%= link_to image_tag("menus/lunch.jpg", alt: "Rails logo"),
-            'lunch_path' %>
+          <%= link_to image_tag("menus/lunch.jpg", alt: "Lunch Menu"),
+            menu_path(:menu => 1) %>
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -35,8 +34,8 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <%= link_to image_tag("menus/happyhour.jpg", alt: "Rails logo"),
-            'lunch_path' %>
+        <%= link_to image_tag("menus/happyhour.jpg", alt: "Happy Hour Menu"),
+            menu_path(:menu => 2) %>
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -44,8 +43,8 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <%= link_to image_tag("menus/dinner.jpg", alt: "Rails logo"),
-            'lunch_path' %>
+        <%= link_to image_tag("menus/dinner.jpg", alt: "Dinner Menu"),
+            menu_path(:menu => 3) %>
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -53,8 +52,7 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <%= link_to image_tag("menus/latenight.jpg", alt: "Rails logo"),
-            'lunch_path' %>
+        <%= link_to image_tag("menus/latenight.jpg", alt: "Late Night Menu"), menu_path(:menu => 4) %>
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -62,8 +60,8 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <%= link_to image_tag("menus/brunch.jpg", alt: "Rails logo"),
-            'lunch_path' %>
+        <%= link_to image_tag("menus/brunch.jpg", alt: "Brunch Menu"),
+            menu_path(:menu => 5) %>
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
