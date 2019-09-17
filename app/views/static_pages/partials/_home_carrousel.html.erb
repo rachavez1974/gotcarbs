@@ -38,8 +38,9 @@
           <p class="lead">Not all that wondered are lost! You have wondered here, and now we found you. Let us treat you to our best lavations, o'dourves, platters, and confetis. </p>
           <% unless logged_in? %>
             <%= link_to "Create Account", signup_path, class: "btn btn-large btn-primary" %>
+            <%= link_to('Log in with Facebook!', '/auth/facebook', class: "btn btn-large btn-primary") %>
           <% end %>
-          <%= link_to('Log in with Facebook!', '/auth/facebook', class: "btn btn-large btn-primary") %>
+          
   
       </div>
     </div>

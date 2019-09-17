@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many :orders, through: :ordered_items
 
   enum menu_type: [:Breakfast, :Lunch, :"Happy Hour", :Dinner, :"Late Night", :Brunch]
-  enum section: [:Starters, :Classics, :Dishes, :A_La_Carte, :Confections]
+  enum section: [:Starters, :Classics, :Dishes, :"A La Carte", :Confections]
   VALID_PRICE_REGEX = /^\d{1,4}(\.\d{0,2})?$/
 
   validates :name, presence: true, length: {maximum: 75}
@@ -25,7 +25,7 @@ class Item < ApplicationRecord
     if ApplicationController.helpers.breakfast_time? && specific_menu == "0"
       @@current_menu = "Breakfast" 
       Item.where("menu_type = ?", 0) 
-    elsif specific_menu == "0"
+    elsif specific_menu == "0" 
       Item.where("menu_type = ?", 0)
     elsif ApplicationController.helpers.lunch_time? && specific_menu == "1"
       @@current_menu = "Lunch"
@@ -52,8 +52,31 @@ class Item < ApplicationRecord
     end
   end
 
+  def self.current_menu_only
+    if ApplicationController.helpers.breakfast_time?
+      @@current_menu = "Breakfast" 
+      Item.where("menu_type = ?", 0) 
+    elsif ApplicationController.helpers.lunch_time?
+      @@current_menu = "Lunch"
+      Item.where("menu_type = ?", 1)
+    elsif ApplicationController.helpers.dinner_time?
+      @@current_menu = "Dinner"
+      Item.where("menu_type = ?", 3)
+    elsif ApplicationController.helpers.late_night_time?
+      @@current_menu = "Late Night"
+      Item.where("menu_type = ?", 4)
+    elsif ApplicationController.helpers.brunch_time?
+      @@current_menu = "Brunch"
+      Item.where("menu_type = ?", 5)
+    end
+  end
+
   def self.current_menu
     @@current_menu
   end
+
+
+
+
 
 end

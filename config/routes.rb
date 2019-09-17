@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about', as: 'about'
   get '/menus', to: 'static_pages#menus', as: 'menus'
   get '/contact', to: 'static_pages#contact', as: 'contact'
+  get '/menu', to: 'menus#show'
 end

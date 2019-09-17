@@ -1,0 +1,8 @@
+<div class="container" style="margin-top: 150px;">
+  <% @items.each do |item|%>
+    <h1><b><%= item.name %></b>
+    <span class="w3-right w3-tag w3-dark-grey w3-round">$<%= item.price%></span></h1>
+    <p class="w3-text-grey"><%= item.description %></p>
+  <% end %>
+  <hr>
+</div>

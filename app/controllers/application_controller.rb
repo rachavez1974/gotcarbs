@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  
+  include ItemsHelper
   def heroku
     render html: "Kanishua, from Heroku Bitches!"
   end
