@@ -1,9 +1,15 @@
 <div id="A La Carte" class="w3-container menu w3-padding-32 w3-white">
   <% @items.each do |item|%>
     <% if item.section == "A La Carte"%>
-    <h1><b><%= item.name %></b>
       <%if item.availability && item.menu_type == Item.current_menu %>
-        </b><span style="border:1px solid red;">Add To Cart</span>
+        </b><span style="border:1px solid red;">
+          <%= form_for(@order_item)do |f| %>
+          <h1><b><%= item.name %></b>
+            <%= f.hidden_field :item_id, value: item.id %>
+            <%= f.number_field :quantity %>
+            <%= f.submit "Add to cart" %>
+          <% end %>
+        </span>
       <% elsif !item.availability %>
         <span style="border:1px solid red;">Item Not Available </span>
       <% end %> 
