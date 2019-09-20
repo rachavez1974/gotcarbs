@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :carts, only: [:show, :destroy]
   resources :ordered_items
   resources :orders
   resources :users, except: [:new, :create]

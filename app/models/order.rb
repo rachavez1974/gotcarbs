@@ -1,4 +1,7 @@
 class Order < ApplicationRecord
-  has_many :ordered_items
-  has_many :items, through: :ordered_items
+  belongs_to :user
+  # has_one :cart
+  # has_many :ordered_items, dependent: :destroy
+  # has_many :items, through: :ordered_items
+
 end

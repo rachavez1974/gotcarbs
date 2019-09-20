@@ -1,7 +1,8 @@
 class Item < ApplicationRecord
   @@current_menu = nil
+
   has_many :ordered_items
-  has_many :orders, through: :ordered_items
+  has_many :carts, through: :ordered_items
 
   enum menu_type: [:Breakfast, :Lunch, :"Happy Hour", :Dinner, :"Late Night", :Brunch]
   enum section: [:Starters, :Classics, :Dishes, :"A La Carte", :Confections]
