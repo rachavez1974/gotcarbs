@@ -1,17 +1,9 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   include ItemsHelper
-  helper_method :current_order
+  helper_method :current_cart
 
-  def current_order
-    if session[:order_id]
-      Order.find(session[:order_id])
-    else
-      Order.new
-    end
-  end
-
-
+  
   def heroku
     render html: "Kanishua, from Heroku Bitches!"
   end
