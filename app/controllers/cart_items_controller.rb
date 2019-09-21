@@ -6,7 +6,7 @@ class CartItemsController < ApplicationController
       add_item_to_cart
     else
       @cart = current_user.carts.first 
-      @cart_item = CartItem.find_by(:item_id => params[:cart_item][:item_id])
+      @cart_item = @cart.cart_items.find_by(:item_id => params[:cart_item][:item_id])
       if @cart.cart_items.include?(@cart_item)
         increment_item_in_cart
       else
@@ -16,11 +16,13 @@ class CartItemsController < ApplicationController
   end
 
   def add_one
-    increment_item_in_cart(params)
+    @cart_item = CartItem.find(params[:id])
+    increment_item_in_cart
   end
 
   def minus_one
-    decrement_item_in_cart(params)
+    @cart_item = CartItem.find(params[:id])
+    decrement_item_in_cart
   end
 
   def destroy
@@ -42,15 +44,13 @@ class CartItemsController < ApplicationController
     redirect_to menu_path
   end
 
-  def increment_item_in_cart(params)
-    @cart_item = CartItem.find_by(:item_id => params[:id])
+  def increment_item_in_cart
     @cart_item.quantity += 1
     @cart_item.save
     redirect_to cart_path(current_user.carts.first)
   end
 
-  def decrement_item_in_cart(params)
-    @cart_item = CartItem.find_by(:item_id => params[:id])
+  def decrement_item_in_cart
     @cart_item.quantity -= 1
     @cart_item.save
     redirect_to cart_path(current_user.carts.first)
