@@ -2,7 +2,6 @@ class Order < ApplicationRecord
 
   before_save :subtotal, :tax, :total
   belongs_to :user
-  # has_many :cart_items
   has_many :ordered_items
   has_many :items, through: :ordered_items
 
