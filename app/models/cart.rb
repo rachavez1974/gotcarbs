@@ -1,13 +1,23 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  has_many :ordered_items
-  has_many :items, through: :ordered_items
+  has_many :cart_items
+  has_many :items, through: :cart_items
 
-  def sub_total
+  TAX = 0.1
+
+  def subtotal
     sum = 0
-    self.ordered_items.each do |ordered_item|
-      sum+= ordered_item.total_price
+    self.cart_items.each do |cart_item|
+      sum+= cart_item.item.price
     end
     return sum
+  end
+
+  def tax
+    (subtotal * TAX).round(2)
+  end
+
+  def total
+    subtotal + tax
   end
 end

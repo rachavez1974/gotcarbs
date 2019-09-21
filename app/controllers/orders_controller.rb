@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     @order = Order.new(order_params(params[:order].keys))
     current_cart.ordered_items.each do |item|
       @order.ordered_items << item
@@ -23,7 +24,7 @@ class OrdersController < ApplicationController
     Cart.destroy(session[:cart_id])
     session[:cart_id] = nil
     redirect_to menu_path
-  send
+  end
 
   private
     def order_params(order)

@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
+  
   def show
     @cart = current_user.carts.first
+    @order = Order.new
   end
 
   def destroy

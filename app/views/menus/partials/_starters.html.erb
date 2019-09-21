@@ -4,10 +4,10 @@
       <%if (item.availability && item.menu_type == Item.current_menu) && logged_in? %>
         </b>
         <span style="border:1px solid red;">
-          <%= form_for(@order_item)do |f| %>
+          <%= form_for(@cart_item)do |f| %>
           <h1><b><%= item.name %></b>
             <%= f.hidden_field :item_id, value: item.id %>
-            <%= f.number_field :quantity, { min: 0 } %>
+            <%= f.number_field :quantity, { min: 1, value: 1 } %>
             <%= f.submit "Add to cart" %>
           <% end %>
         </span>

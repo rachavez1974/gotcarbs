@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
   
+  resources :cart_items
   resources :carts, only: [:show, :destroy]
-  resources :ordered_items
+  resources :ordered_items, only: [:create, :destroy]
+  get '/add_one/:id', to: 'cart_items#add_one', as: 'add_to_cart'
+  get '/minus_one/:id', to: 'cart_items#minus_one', as: 'minus_from_cart'
   resources :orders
   resources :users, except: [:new, :create]
   resources :addresses

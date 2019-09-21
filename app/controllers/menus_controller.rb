@@ -6,7 +6,7 @@ class MenusController < ApplicationController
       @items = Item.current_menu_only
     end
     # binding.pry
-    @order_item = OrderedItem.new
+    @cart_item = CartItem.new
   end
 end
 
