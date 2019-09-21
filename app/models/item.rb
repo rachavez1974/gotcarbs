@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   @@current_menu = nil
+  has_many :cart_items
+  has_many :carts, through: :cart_items
   has_many :ordered_items
   has_many :orders, through: :ordered_items
 

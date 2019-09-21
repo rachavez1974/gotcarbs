@@ -27,7 +27,7 @@ module ItemsHelper
   end
 
   def dinner_time?
-    start_time = Time.new(CURRENT_YEAR, CURRENT_MONTH, CURRENT_DATE, 00, 00, 59).in_time_zone('Eastern Time (US & Canada)')
+    start_time = Time.new(CURRENT_YEAR, CURRENT_MONTH, CURRENT_DATE, 00, 00, 00).in_time_zone('Eastern Time (US & Canada)')
     end_time = Time.new(CURRENT_YEAR, CURRENT_MONTH, CURRENT_DATE, 21, 59, 59).in_time_zone('Eastern Time (US & Canada)')
     DateTime.now.between?(start_time, end_time)  
   end

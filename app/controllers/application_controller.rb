@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   include ItemsHelper
+  helper_method :current_cart
+
+  
   def heroku
     render html: "Kanishua, from Heroku Bitches!"
   end

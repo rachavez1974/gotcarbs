@@ -1,6 +1,7 @@
 class CreateOrderedItems < ActiveRecord::Migration[5.2]
   def change
     create_table :ordered_items do |t|
+      t.integer :quantity
       t.references :order, foreign_key: true
       t.references :item, foreign_key: true
 
