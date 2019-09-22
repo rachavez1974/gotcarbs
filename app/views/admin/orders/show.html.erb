@@ -45,6 +45,9 @@
                             </em></h4></td>
                             <td class="col-md-1" style="text-align: center"><%= order_item.quantity%> </td>
                             <td class="col-md-1 text-center">$<%= order_item.item.price %></td>
+                            <td class="col-md-1 text-center"><%= link_to "Delete", admin_ordered_item_path(order_item), method: :delete %></td>
+                            <td class="col-md-1 text-center"><%= link_to "Add", admin_add_to_order_path(order_item) %></td>
+                            <td class="col-md-1 text-center"><%= link_to "Minus", admin_minus_from_order_path(order_item) %></td>
                         </tr>
                         <% end %>
                         <tr>
@@ -68,6 +71,8 @@
                         <tr>
                             <td>   </td>
                             <td>   </td>
+
+        
                             <td class="text-right"><h4><strong>Total: </strong></h4></td>
                             <td class="text-center text-danger"><h4><strong>$<%= @order.total %></strong></h4></td>
                         </tr>

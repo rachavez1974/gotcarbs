@@ -2,14 +2,11 @@ Rails.application.routes.draw do
 
   
   
+  resources :orders, only: [:create, :show, :index]
   resources :carts, only: [:show, :destroy]
-  resources :ordered_items, only: [:create, :destroy]
-  get '/add_to_order/:id', to: 'ordered_items#add_one', as: 'add_to_order'
-  get '/minus_from_order/:id', to: 'ordered_items#minus_one', as: 'minus_from_order'
   resources :cart_items
   get '/increment_cartitem/:id', to: 'cart_items#add_one', as: 'add_to_cart'
   get '/decrement_cartitem/:id', to: 'cart_items#minus_one', as: 'minus_from_cart'
-  resources :orders
   resources :users, except: [:new, :create]
   resources :addresses
   
@@ -22,6 +19,11 @@ Rails.application.routes.draw do
     resources :users do
       resources :addresses
     end
+
+    resources :orders, only: [:show, :index, :destroy]
+    resources :ordered_items, only: [:destroy]
+    get '/add_to_order/:id', to: 'ordered_items#add_one', as: 'add_to_order'
+    get '/minus_from_order/:id', to: 'ordered_items#minus_one', as: 'minus_from_order'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
