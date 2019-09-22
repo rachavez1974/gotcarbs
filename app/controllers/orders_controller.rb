@@ -1,23 +1,13 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:edit, :update, :show, :destroy]
-  before_action :logged_in_user && :admin?, only: [:edit, :update, :show, :destroy]
-  
-  def index
-    if params[:id]
-      @orders = Order.paginate(page: params[:page], per_page: 5).user_orders(params[:id])
-      
-      if !@orders.empty?
-        @user = User.find(params[:id])
-      else
-        flash[:alert] = "User not found, please try again."
-        render 'index'
-      end
-    else
-      @orders = Order.paginate(page: params[:page], per_page: 15)      
-    end 
-  end
+  before_action :set_order, only: [:show]
+  before_action :logged_in_user, only: [:show]
+  before_action :correct_user, only: [:show]
 
   def show
+  end
+
+  def index
+    @orders = current_user.orders.paginate(page: params[:page], per_page: 5)
   end
 
   def create
@@ -31,12 +21,6 @@ class OrdersController < ApplicationController
     redirect_to menu_path
   end
 
-  def destroy
-    @order.destroy
-    flash[:success] = "Order number #{@order.id} has been deleted!"
-    redirect_to root_url
-  end
-
   private  
     def set_order
       @order = Order.find(params[:id])
@@ -45,4 +29,10 @@ class OrdersController < ApplicationController
     def order_items_hash(item)
       {:quantity => item.quantity, :item_id => item.item_id}
     end
+
+     # Confirms the correct user.
+    def correct_user
+      redirect_to(root_url) unless current_user?(@order.user)
+    end
+
 end
