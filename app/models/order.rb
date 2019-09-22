@@ -1,12 +1,14 @@
 class Order < ApplicationRecord
+  TAX = 0.1
 
   before_save :subtotal, :tax, :total
   belongs_to :user
   has_many :ordered_items
   has_many :items, through: :ordered_items
 
-  TAX = 0.1
-
+  default_scope -> { order(created_at: :desc) }
+  scope :user_orders, ->(id) { where(user_id: id) }
+  
   def subtotal
     sum = 0
     self.ordered_items.each do |order_item|

@@ -35,17 +35,19 @@
                             <th>Items</th>
                             <th>#</th>
                             <th class="text-center">Price</th>
-                            <th class="text-center">Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% @order.ordered_items.each do |oi| %>
+                        <% @order.ordered_items.each do |order_item| %>
                         <tr>
-                            <td class="col-md-9"><em><%= oi.item.name %>
+                            <td class="col-md-9"><em><%= order_item.item.name %>
         
                             </em></h4></td>
-                            <td class="col-md-1" style="text-align: center"><%= oi.quantity%> </td>
-                            <td class="col-md-1 text-center">$<%= oi.item.price %></td>
+                            <td class="col-md-1" style="text-align: center"><%= order_item.quantity%> </td>
+                            <td class="col-md-1 text-center">$<%= order_item.item.price %></td>
+                            <td class="col-md-1 text-center"><%= link_to "Delete", ordered_item_path(order_item), method: :delete %></td>
+                            <td class="col-md-1 text-center"><%= link_to "Add", add_to_order_path(order_item) %></td>
+                            <td class="col-md-1 text-center"><%= link_to "Minus", minus_from_order_path(order_item) %></td>
                         </tr>
                         <% end %>
                         <tr>
@@ -60,23 +62,22 @@
                             </p></td>
                             <td class="text-center">
                             <p>
-                                <strong>$6.94</strong>
+                                <strong>$<%= @order.subtotal%></strong>
                             </p>
                             <p>
-                                <strong>$6.94</strong>
+                                <strong>$<%= @order.tax%></strong>
                             </p></td>
                         </tr>
                         <tr>
                             <td>   </td>
                             <td>   </td>
+
+        
                             <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                            <td class="text-center text-danger"><h4><strong>$31.53</strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong>$<%= @order.total %></strong></h4></td>
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-success btn-lg btn-block">
-                    Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>
-                </button></td>
             </div>
         </div>
     </div>  

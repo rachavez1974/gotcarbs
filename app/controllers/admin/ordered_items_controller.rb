@@ -1,4 +1,5 @@
-class OrderedItemsController < ApplicationController
+class Admin::OrderedItemsController < ApplicationController
+  before_action :logged_in_user && :admin?, only: [:index, :show, :destroy]
   
   def add_one
     @ordered_item = OrderedItem.find(params[:id])

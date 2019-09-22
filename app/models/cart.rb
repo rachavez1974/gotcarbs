@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
   has_many :items, through: :cart_items
 
   TAX = 0.1
@@ -8,9 +8,9 @@ class Cart < ApplicationRecord
   def subtotal
     sum = 0
     self.cart_items.each do |cart_item|
-      sum+= cart_item.item.price
+      sum+= cart_item.item.price * cart_item.quantity
     end
-    return sum
+    subtotal = sum
   end
 
   def tax

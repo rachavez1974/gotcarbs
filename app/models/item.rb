@@ -17,6 +17,7 @@ class Item < ApplicationRecord
   validates :menu_type, presence: true
   validates :availability, presence: true
 
+  #returns items by menu type, i.e. lunch...breakfast
   scope :menu_items, -> (menu_type) { where(menu_type: menu_type) }
 
   def self.find_by_id_or_name(key)
