@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     end
     @order.save
     current_user.carts.first.destroy
-    redirect_to menu_path
+    redirect_to @order
   end
 
   private  
