@@ -85,13 +85,14 @@
 users = User.all
   users.each do |user|
     5.times do |n|
-      item_id =rand(1..100)
-      item_quantity = rand(1..3)
-      # cart = Cart.create(:cart_id => user.id)
-      # Cart_Item.create(item_id: item_d, quatity: item_quantity, cart_id: cart.id)
       order = user.orders.new
-      order.save
-      order.ordered_items.new(:quantity => item_quantity, :item_id => item_id)
-      order.save
+      3.times do |n|
+        item_id =rand(1..100)
+        item_quantity = rand(1..3)
+        order.ordered_items.new(:quantity => item_quantity, :item_id => item_id)
+        date = Faker::Date.between(from: 1.year.ago, to: Date.today)
+        order.save
+        order.update_attributes(:created_at => date)
+      end
     end
   end
