@@ -1,0 +1,19 @@
+
+  <% @orders.each do |order|%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Order#</th>
+        <th>Date Created</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to order.id, admin_order_path(order)%></td>
+        <td><%= order.created_at.strftime("%B %d, %Y")%> </td>
+        <td>$<%= order.total %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>

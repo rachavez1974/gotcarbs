@@ -3,9 +3,31 @@
     <h1>All users</h1>
       <ul>
         <% @users.each do |user| %>
-          <li>
-            <%= link_to user.full_name, admin_user_path(user) %>
-          </li>
+          <div class="container">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>User#</th>
+                  <th>Full Name</th>
+                  <th>Phone Number</th>
+                  <th>Orders</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= user.id %></td>
+                  <td><%= link_to user.full_name, admin_user_path(user) %></td>
+                  <td><%= user.phone_number%></td>
+                  <td><% if !user.orders.empty?%>
+                    <%= link_to "Orders", admin_orders_path(user.id) %>
+                    <% else %>
+                    No Order Yet
+                  <% end %>
+                  </td>    
+                </tr>
+              </tbody>
+            </table>
+          </div>
         <% end %>
       </ul>
   <%= will_paginate(:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
