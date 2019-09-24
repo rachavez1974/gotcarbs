@@ -1,5 +1,11 @@
 class SessionsController < ApplicationController
+
   def new
+    if logged_in? && current_user.admin?
+      redirect_to admin_root_path
+    elsif logged_in && !current_user.admin?
+      redirect_to menu_path
+    end
   end
 
   def create
@@ -13,7 +19,7 @@ class SessionsController < ApplicationController
   # Logs out the current user.
   def destroy
     log_out
-    redirect_to root_url    
+    redirect_to login_path   
   end
 
   private
@@ -57,11 +63,14 @@ class SessionsController < ApplicationController
       if @user && @user.authenticate(params[:session][:password])
         log_in(@user)
         params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-        redirect_back_or menu_path
+        if @user.admin?
+          redirect_to admin_root_path 
+        else
+          redirect_back_or menu_path
+        end
       else
         flash.now[:danger] = 'Invalid email/password combination'
         render 'new'
       end
     end
-
 end
