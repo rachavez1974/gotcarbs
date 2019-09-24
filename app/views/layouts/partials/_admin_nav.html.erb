@@ -77,20 +77,20 @@ body {
 <body>
 
 <div class="sidenav">
-  <a href="#about">Home</a>
-  <a href="#services">Support</a>
+  <a href="#about"><%= link_to "Home", admin_root_path %></a>
+  <a href="#services"><%= link_to "Support", %></a>
   <button class="dropdown-btn">Users 
     <i class="fa fa-caret-down"></i>
   </button>
-  <%= render 'layouts/partials/admin_crud' %>
+  <%= render 'layouts/partials/admin_crud_user' %>
   <button class="dropdown-btn">Items 
     <i class="fa fa-caret-down"></i>
   </button>
-  <%= render 'layouts/partials/admin_crud' %>
+  <%= render 'layouts/partials/admin_crud_item' %>
   <button class="dropdown-btn">Orders
     <i class="fa fa-caret-down"></i>
   </button>
-  <%= render 'layouts/partials/admin_crud' %>
+  <%= render 'layouts/partials/admin_crud_order' %>
   <div>
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */

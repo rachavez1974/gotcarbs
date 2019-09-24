@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   
   
   resources :orders, only: [:create, :show, :index]
@@ -13,6 +12,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'dashboard#home'
+    get '/support', to: "dashboard#support"
     resources :items
     get 'searchitem', to: 'items#search_item'
     get 'search', to: 'items#search'

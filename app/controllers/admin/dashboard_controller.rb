@@ -1,7 +1,9 @@
 class Admin::DashboardController < ApplicationController
   layout "admin"
 
-  def home
-    
+  def home 
+  end
+
+  def support
   end
 end

@@ -1,5 +1,6 @@
 <%= simple_form_for(@item, url: yield(:path)) do |f| %>
-<div class="container" style="margin-top: 140px; margin-bottom: 40px;">
+<div class="container" style="margin-top: 50px; margin-bottom: 40px;">
+  <h1>Add New Item</h1>
   <div class="row">
     <div class="form-group col-md-10">
       <%= f.input :name, placeholder: "Type item's name" %>

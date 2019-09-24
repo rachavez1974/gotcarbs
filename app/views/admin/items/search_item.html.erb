@@ -25,9 +25,10 @@ input[type=text]:focus {
   </head>
   <!-- Coded with love by Mutiullah Samim-->
   <body>
-    <div class="container h-100" style="margin-top: 140px; margin-bottom: 40px;">
+    <div class="container h-100" style="margin-top: 80px; margin-bottom: 40px;">
+      <h1>Search Item</h1>
       <div class="d-flex justify-content-center h-100">
-          <div class="container" style="margin-top: 140px; margin-bottom: 40px;">
+          <div class="container" style="margin-top: 20px; margin-bottom: 40px;">
         <%= form_tag(admin_search_path, class: "searchbar", method: :get) do %>
           <%= text_field_tag(:search_key, params[:search_key], placeholder: "enter item's number or full name") %>
           <%= submit_tag 'Search' %>
