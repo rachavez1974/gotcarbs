@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  layout "admin"
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   before_action :logged_in_user && :admin?, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 

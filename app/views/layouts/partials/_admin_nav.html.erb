@@ -77,8 +77,16 @@ body {
 <body>
 
 <div class="sidenav">
-  <a href="#about"><%= link_to "Home", admin_root_path %></a>
-  <a href="#services"><%= link_to "Support", %></a>
+  <%= link_to "Home", admin_root_path %>
+  <%= link_to "Support", admin_support_path %>
+  <% if logged_in? %>
+    <button class="dropdown-btn">Log Out 
+    <i class="fa fa-caret-down"></i>
+    </button>
+    <%= render 'layouts/partials/admin_account' %>
+  <% else %>
+    <%= link_to "Log In", login_path %>
+  <% end %>
   <button class="dropdown-btn">Users 
     <i class="fa fa-caret-down"></i>
   </button>
