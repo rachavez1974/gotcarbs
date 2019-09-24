@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show]
   before_action :logged_in_user, only: [:show, :index]
-  before_action :correct_user, only: [:show, :index]
 
   def show
   end
@@ -24,15 +23,14 @@ class OrdersController < ApplicationController
   private  
     def set_order
       @order = Order.find(params[:id])
+      unless current_user.id == @order.user_id
+        flash[:alert] = "Only owners can see their orders."
+        redirect_to menu_path
+      end
     end 
 
     def order_items_hash(item)
       {:quantity => item.quantity, :item_id => item.item_id}
-    end
-
-     # Confirms the correct user.
-    def correct_user
-      redirect_to(root_url) unless current_user?(@order.user)
     end
 
 end
