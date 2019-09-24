@@ -8,6 +8,15 @@ class Order < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
   scope :user_orders, ->(id) { where(user_id: id) }
+
+  def self.find_by_date(date)
+    year = date[:year]
+    month = date[:month]
+    day = date[:day]
+    Order.where('extract(year from created_at) = ? AND 
+                 extract(month from created_at) = ? AND 
+                 extract(day from created_at) = ?', year, month, day)
+  end
   
   def subtotal
     sum = 0

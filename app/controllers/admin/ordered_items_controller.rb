@@ -14,7 +14,7 @@ class Admin::OrderedItemsController < ApplicationController
   def destroy
     @ordered_item = OrderedItem.find(params[:id]).destroy
     flash[:success] = "Item deleted!"
-    redirect_to order_path(@ordered_item.order)
+    redirect_to admin_order_path(@ordered_item.order)
   end
 
   private
@@ -23,23 +23,16 @@ class Admin::OrderedItemsController < ApplicationController
     params.require(:ordered_item).permit(item)
   end
 
-  def add_item_to_order
-    @ordered_item = OrderedItem.new(item_params(params[:ordered_item].keys))
-    @cart.ordered_items << @ordered_item
-    @cart.save
-    redirect_to menu_path
-  end
-
   def increment_item_in_order
     @ordered_item.quantity += 1
     @ordered_item.save
-    redirect_to order_path(@ordered_item.order)
+    redirect_to admin_order_path(@ordered_item.order)
   end
 
   def decrement_item_in_order
     @ordered_item.quantity -= 1
     @ordered_item.save
-    redirect_to order_path(@ordered_item.order)
+    redirect_to admin_order_path(@ordered_item.order)
   end
 
 end

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get 'showitem', to: 'items#search'
     get 'searchuser', to: 'users#search_user'
     get 'showuser', to: 'users#search'
+    get 'searchorder', to: 'orders#search_order'
+    get 'showorder', to: 'orders#search'
     resources :users do
       resources :addresses
     end

@@ -15,7 +15,6 @@ class Item < ApplicationRecord
                                     format: {with: VALID_PRICE_REGEX, multiline: true}
   validates :section, presence: true
   validates :menu_type, presence: true
-  # validates :availability, presence: true
 
   #returns items by menu type, i.e. lunch...breakfast
   scope :menu_items, -> (menu_type) { where(menu_type: menu_type) }

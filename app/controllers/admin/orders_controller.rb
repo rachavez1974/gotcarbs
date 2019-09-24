@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
+  layout "admin"
   before_action :set_order, only: [:edit, :update, :show, :destroy]
   before_action :logged_in_user && :admin?, only: [:index, :show, :destroy]
   
@@ -18,6 +19,27 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
+  end
+
+  def search
+    if params[:id]
+      @order = Order.find_by(:id => params[:id])
+      if !@order
+        flash.now[:alert] = "Order not found, please try agagin!" 
+        render 'search_order'
+      else
+          render 'show'
+      end
+    elsif params[:start_date]
+      @orders = Order.find_by_date(params[:start_date])
+      if @orders.empty?
+        flash.now[:alert] = "We didn't find orders for this date!" 
+        render 'search_order'
+      else
+        flash.now[:alert] = "We found the following orders for this date!" 
+        render 'index'
+      end
+    end
   end
 
   def destroy
