@@ -22,6 +22,9 @@ class User < ApplicationRecord
   has_secure_password
   validates :password,  presence: true, length: {minimum: 1}, allow_nil: true
 
+  def self.find_by_id_or_name(key)
+    User.find_by(:id => key) || User.find_by(:first_name => key)
+  end
 
   def full_name
     "#{self.first_name} #{self.last_name}"

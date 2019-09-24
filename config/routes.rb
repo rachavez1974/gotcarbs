@@ -14,8 +14,11 @@ Rails.application.routes.draw do
     root to: 'dashboard#home'
     get '/support', to: "dashboard#support"
     resources :items
+    #display forms views only
     get 'searchitem', to: 'items#search_item'
-    get 'search', to: 'items#search'
+    get 'showitem', to: 'items#search'
+    get 'searchuser', to: 'users#search_user'
+    get 'showuser', to: 'users#search'
     resources :users do
       resources :addresses
     end

@@ -27,6 +27,17 @@ class Admin::UsersController < ApplicationController
   def show
   end
 
+  def search
+    if params[:search_key]
+      if @user = User.find_by_id_or_name(params[:search_key])
+        render 'show'
+      else
+        flash.now[:alert] = "User not found, please try agagin!" 
+        render 'search_user'
+      end
+    end
+  end
+
   def edit
     
   end

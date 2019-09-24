@@ -26,11 +26,11 @@ input[type=text]:focus {
   <!-- Coded with love by Mutiullah Samim-->
   <body>
     <div class="container h-100" style="margin-top: 80px; margin-bottom: 40px;">
-      <h1>Search Item</h1>
+      <h1>Search User</h1>
       <div class="d-flex justify-content-center h-100">
           <div class="container" style="margin-top: 20px; margin-bottom: 40px;">
-        <%= form_tag(admin_showitem_path, class: "searchbar", method: :get) do %>
-          <%= text_field_tag(:search_key, params[:search_key], placeholder: "enter item's number or full name") %>
+        <%= form_tag(admin_showuser_path, class: "searchbar", method: :get) do %>
+          <%= text_field_tag(:search_key, params[:search_key], placeholder: "enter user's number or first name") %>
           <%= submit_tag 'Search' %>
         <% end %>
       </div>
@@ -38,6 +38,3 @@ input[type=text]:focus {
     </div>
   </body>
 </html>
-
-
-
