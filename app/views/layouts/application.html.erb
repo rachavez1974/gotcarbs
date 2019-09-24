@@ -24,15 +24,15 @@
   <%= render 'layouts/partials/navbar' %>
 </nav>
 <main-content>
+  <% flash.each do |message_type, message| %>
+    <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+  <% end %>   
   <%= yield %>
 </main>
 
 <footer>
   <%= render 'layouts/partials/footer' %>
 </footer>
-
-
-  
-  
+    
   </body>
 </html>
