@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   def new
     if logged_in? && current_user.admin?
       redirect_to admin_root_path
-    elsif logged_in && !current_user.admin?
+    elsif logged_in? && !current_user.admin?
       redirect_to menu_path
     end
   end
