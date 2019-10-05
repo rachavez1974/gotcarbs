@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :logged_in_user, only: [:show, :destroy]
   
   def show
     if @cart = current_user.carts.first

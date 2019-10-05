@@ -61,6 +61,7 @@ class User < ApplicationRecord
   def self.create_from_oauth(oauth_hash)
     #save user withouth validations
     user = User.new(first_name: oauth_hash["name"].split[0], email: oauth_hash["email"], password: User.new_token)
+    user.addresses.build
     if user.save(:validate => false)
       User.last
     end
